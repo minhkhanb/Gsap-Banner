@@ -1,0 +1,47 @@
+<html> 
+<head>
+<title>DataCapture Hidden Form</title>
+</head>
+<body>
+<form id="form1" method="post">
+	<input id="data_name" type="hidden" name="data_name" />
+	<input id="data_contact" type="hidden" name="data_contact" />
+	<input id="email" type="hidden" name="email" />
+    <input id="data_note" type="hidden" name="data_note" />
+</form>
+
+
+<script type="text/javascript">
+function gup( name ) {
+	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	var regexS = "[\\?&]"+name+"=([^&#]*)";
+	var regex = new RegExp( regexS );
+	var results = regex.exec( window.location.href );
+	if( results == null )
+	return "";
+	else
+	return results[1];
+}
+
+function mm_submitDC() {
+	var v1 = gup("v1");
+	var v2 = gup("v2");
+	var v3 = gup("v3");
+    var v4 = gup("v4");
+	var adId = gup("ad");
+	if ((v1 != "") && (v2 != "") && (v3 != "") && (adId != "")) {
+		document.getElementById("form1").action = "http://bs.serving-sys.com/BurstingPipe/BurstingDataCapturePipe.asp?ebFormName=formFields&ebReplyEmail=dendy.ardany@sizmek.com&ebSendAsHTML=1&ebAdID=" + adId + "&ord=" + Math.floor(Math.random() * 10000);
+		document.getElementById("data_name").value = v1;
+		document.getElementById("data_contact").value = v2;
+		document.getElementById("email").value = v3;
+        document.getElementById("data_note").value = v4;
+		document.getElementById("form1").submit();
+	} else {
+		//You accessed this HTML file without the correct params in the URL
+	}
+}
+
+mm_submitDC();
+</script>
+</body>
+</html>
